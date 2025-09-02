@@ -16,7 +16,7 @@ const Contact = () => {
     setFormStatus({ message: '', type: '' });
 
     try {
-      const response = await fetch('https://server-jr4r.onrender.com/', {
+      const response = await fetch('https://server-x3dv.onrender.com', {
   method: 'POST',
         headers: {
           'Content-Type': 'application/json',
