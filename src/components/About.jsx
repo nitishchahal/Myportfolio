@@ -59,7 +59,7 @@ const About = () => {
   return (
     <section id="about" className="py-20 bg-gray-100 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-poppins">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 mt-5 font-poppins">
           About <span className="text-teal">Me</span>
         </h2>
         <div className="flex flex-col md:flex-row items-center gap-12">

@@ -1,22 +1,19 @@
-import React from 'react';
+import React from "react";
+import { ArrowUp } from "lucide-react"; // clean icon
 
-const BackToTop = ({ isVisible }) => {
+export default function BackToTop({ isVisible }) {
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  if (!isVisible) return null;
 
   return (
     <button
-      id="back-to-top"
       onClick={scrollToTop}
-      className={`fixed bottom-8 right-8 p-3 bg-teal text-white rounded-full shadow-lg transition-all ${isVisible ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+      className="fixed bottom-6 right-6 p-3 rounded-full bg-gradient-to-r from-teal-500 to-indigo-600 text-white shadow-lg hover:scale-110 transition-transform duration-300"
     >
-      <i className="fas fa-arrow-up"></i>
+      <ArrowUp size={22} />
     </button>
   );
-};
-
-export default BackToTop;
+}

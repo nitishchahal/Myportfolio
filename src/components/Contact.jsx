@@ -16,7 +16,7 @@ const Contact = () => {
     setFormStatus({ message: '', type: '' });
 
     try {
-      const response = await fetch('https://server-portfolio-3.onrender.com/api/contact', {
+      const response = await fetch('https://server-portfolio-3.onrender.com/api/contact/api/contact', {
   method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const Contact = () => {
   return (
     <section id="contact" className="py-20">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 font-poppins">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 mt-5 font-poppins">
           Get In <span className="text-teal">Touch</span>
         </h2>
         <p className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">

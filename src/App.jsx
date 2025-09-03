@@ -42,25 +42,87 @@
 
 // export default App;
 
-import React, { useState, useEffect } from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Portfolio from './components/Portfolio';
-import Gallery from './components/Gallery';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import BackToTop from './components/BackToTop';
-import './index.css';
+// import React, { useState, useEffect } from 'react';
+// import Header from './components/Header';
+// import Hero from './components/Hero';
+// import About from './components/About';
+// import Skills from './components/Skills';
+// import Portfolio from './components/Portfolio';
+// import Gallery from './components/Gallery';
+// import Contact from './components/Contact';
+// import Footer from './components/Footer';
+// import BackToTop from './components/BackToTop';
+// import './index.css';
+
+// function App() {
+//   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+//   const [isBackToTopVisible, setIsBackToTopVisible] = useState(false);
+
+//   useEffect(() => {
+//     document.documentElement.className = theme;
+//     localStorage.setItem('theme', theme);
+
+//     const handleScroll = () => {
+//       if (window.pageYOffset > 300) {
+//         setIsBackToTopVisible(true);
+//       } else {
+//         setIsBackToTopVisible(false);
+//       }
+//     };
+
+//     window.addEventListener('scroll', handleScroll);
+//     return () => window.removeEventListener('scroll', handleScroll);
+//   }, [theme]);
+
+//   const toggleTheme = () => {
+//     setTheme(theme === 'dark' ? 'light' : 'dark');
+//   };
+
+//   return (
+//     <div className={`bg-gray-50 text-gray-800 dark:bg-dark dark:text-gray-200 font-inter`}>
+//       <Header toggleTheme={toggleTheme} theme={theme} />
+//       <main>
+//         <Hero />
+//         <About />
+//         <Portfolio />
+//         <Gallery />
+//         <Skills />
+//         <Contact />
+//       </main>
+//       <Footer />
+//       <BackToTop isVisible={isBackToTopVisible} />
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+
+
+
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Skills from "./components/Skills";
+import Portfolio from "./components/Portfolio";
+import Gallery from "./components/Gallery";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+import BackToTop from "./components/BackToTop";
+import "./index.css";
+import ScrollToTop from "./ScrollToTop";
 
 function App() {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
   const [isBackToTopVisible, setIsBackToTopVisible] = useState(false);
 
   useEffect(() => {
     document.documentElement.className = theme;
-    localStorage.setItem('theme', theme);
+    localStorage.setItem("theme", theme);
 
     const handleScroll = () => {
       if (window.pageYOffset > 300) {
@@ -70,31 +132,52 @@ function App() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+    setTheme(theme === "dark" ? "light" : "dark");
   };
 
   return (
-    <div className={`bg-gray-50 text-gray-800 dark:bg-dark dark:text-gray-200 font-inter`}>
-      <Header toggleTheme={toggleTheme} theme={theme} />
-      <main>
-        <Hero />
-        <About />
-        <Portfolio />
-        <Gallery />
-        <Skills />
-        <Contact />
-      </main>
-      <Footer />
-      <BackToTop isVisible={isBackToTopVisible} />
-    </div>
+    <Router>
+      <div
+        className={`bg-gray-50 text-gray-800 dark:bg-dark dark:text-gray-200 font-inter`}
+      >
+        <Header toggleTheme={toggleTheme} theme={theme} />
+
+        <main>
+        <ScrollToTop />
+          <Routes>
+            {/* Home shows ALL sections stacked */}
+            <Route
+              path="/"
+              element={
+                <>
+                  <Hero />
+                  <About />
+                  <Portfolio />
+                  <Gallery />
+                  <Skills />
+                  <Contact />
+                </>
+              }
+            />
+            {/* Individual routes show only that section */}
+            <Route path="/about" element={<About />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+
+        <Footer />
+        <BackToTop isVisible={isBackToTopVisible} />
+      </div>
+    </Router>
   );
 }
 
 export default App;
-
-

@@ -5,7 +5,7 @@ const projects = [
   { id: 2, category: 'app', title: 'Village Inquiry Portal', description: 'Project Goal: Bridging the gap between residents and essential services', imageUrl: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80', projectUrl: 'https://nitishchahal.github.io/Village-Inquiry/', caseStudyUrl: '#' },
   { id: 3, category: 'web', title: 'Weather App', description: 'Complete Weather Report for your city.', imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80', projectUrl: 'https://nitishchahal.github.io/Weather/', caseStudyUrl: '#' },
   { id: 4, category: 'web', title: 'PassWord Generator', description: 'Data visualization platform', imageUrl: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80', projectUrl: '#', caseStudyUrl: '#' },
-  { id: 5, category: 'app', title: 'Travel Planner App', description: 'Trip planning made easy', imageUrl: 'https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80', projectUrl: '#', caseStudyUrl: '#' },
+  { id: 5, category: 'app', title: 'Todo App', description: 'Task planning made them easy', imageUrl: 'https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80', projectUrl: 'https://front-todo-omega.vercel.app/', caseStudyUrl: '#' },
   { id: 6, category: 'graphic', title: 'Marketing Campaign', description: 'Print and digital materials', imageUrl: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80', projectUrl: '#', caseStudyUrl: '#' },
 ];
 
@@ -19,7 +19,7 @@ const Portfolio = () => {
   return (
     <section id="portfolio" className="py-20">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 font-poppins">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 mt-5 font-poppins">
           My <span className="text-teal">Portfolio</span>
         </h2>
         <p className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
