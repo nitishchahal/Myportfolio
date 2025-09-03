@@ -87,46 +87,47 @@ const Hero = () => {
           Creative Web Developer | Visual Storyteller
         </motion.p>
 
-        {/* CTA Buttons */}
-        <motion.div
-          className="flex justify-center space-x-4"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: {},
-            visible: {
-              transition: { staggerChildren: 0.3, delayChildren: 2 },
-            },
-          }}
-        >
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 },
-            }}
-          >
-            <Link
-              to="/portfolio"
-              className="px-8 py-3 bg-teal hover:bg-teal-600 text-white rounded-lg font-medium transition-all transform hover:scale-105"
-            >
-              View My Work
-            </Link>
-          </motion.div>
+       {/* CTA Buttons */}
+<motion.div
+  className="flex flex-col sm:flex-row justify-center sm:space-x-4 space-y-4 sm:space-y-0"
+  initial="hidden"
+  animate="visible"
+  variants={{
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.3, delayChildren: 2 },
+    },
+  }}
+>
+  <motion.div
+    variants={{
+      hidden: { opacity: 0, y: 20 },
+      visible: { opacity: 1, y: 0 },
+    }}
+  >
+    <Link
+      to="/portfolio"
+      className="w-full sm:w-auto px-8 py-3 bg-teal hover:bg-teal-600 text-white rounded-lg font-medium transition-all transform hover:scale-105 block text-center"
+    >
+      View My Work
+    </Link>
+  </motion.div>
 
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 },
-            }}
-          >
-            <Link
-              to="/contact"
-              className="px-8 py-3 border-2 border-teal text-teal hover:bg-teal hover:text-white rounded-lg font-medium transition-all transform hover:scale-105"
-            >
-              Contact Me
-            </Link>
-          </motion.div>
-        </motion.div>
+  <motion.div
+    variants={{
+      hidden: { opacity: 0, y: 20 },
+      visible: { opacity: 1, y: 0 },
+    }}
+  >
+    <Link
+      to="/contact"
+      className="w-full sm:w-auto px-8 py-3 border-2 border-teal text-teal hover:bg-teal hover:text-white rounded-lg font-medium transition-all transform hover:scale-105 block text-center"
+    >
+      Contact Me
+    </Link>
+  </motion.div>
+</motion.div>
+
       </div>
 
       {/* Scroll Down Button */}
