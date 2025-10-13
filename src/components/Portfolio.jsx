@@ -33,16 +33,16 @@ const Portfolio = () => {
             <button type="button" onClick={() => setActiveFilter('graphic')} className={`filter-btn px-4 py-2 text-sm font-medium rounded-r-lg border border-gray-300 dark:border-gray-600 ${activeFilter === 'graphic' ? 'active bg-teal text-white border-teal' : ''}`}>Graphic Design</button>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 " >
           {filteredProjects.map(project => (
             <div key={project.id} className="portfolio-item" data-category={project.category}>
               <div className="relative group overflow-hidden rounded-xl shadow-lg">
                 <img src={project.imageUrl} alt={project.title} className="w-full h-64 object-cover transition duration-500 group-hover:scale-110 " />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/90 to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-end p-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/90 to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-end p-6"  rel="noopener noreferrer">
                   <h3 className="text-white text-xl font-bold mb-2 transform translate-y-4 group-hover:translate-y-0 transition duration-500">{project.title}</h3>
                   <p className="text-gray-300 mb-4 transform translate-y-4 group-hover:translate-y-0 transition duration-500 delay-100">{project.description}</p>
                   <div className="flex space-x-3 transform translate-y-4 group-hover:translate-y-0 transition duration-500 delay-150">
-                    <a href={project.projectUrl} className="px-4 py-2 bg-teal text-white rounded-lg text-sm hover:bg-teal-600">View Project</a>
+                    <a href={project.projectUrl} className="px-4 py-2 bg-teal text-white rounded-lg text-sm hover:bg-teal-600 " target="_blank">View Project</a>
                     <a href={project.caseStudyUrl} className="px-4 py-2 bg-white/20 text-white rounded-lg text-sm hover:bg-white/30">Case Study</a>
                   </div>
                 </div>

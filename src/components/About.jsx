@@ -2,8 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 
 // Skill data array for easy management
 const skillsData = [
-  { name: 'HTML/CSS/JS', percentage: 90 },
-  { name: 'React/Node/MySQL', percentage: 75 }, // Updated to reflect the backend changes
+  { name: 'HTML/CSS/JS/React', percentage: 90 },
+  { name: 'Node/Express/MySQL', percentage: 75 }, // Updated to reflect the backend changes
   { name: 'Photography / Videography', percentage: 90 },
   { name: 'DaVinci Resolve/Canva/Figma', percentage: 85 },
 ];
