@@ -1,43 +1,61 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  darkMode: 'class',
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
-        navy: '#2C3E50',
-        teal: '#6BBAA7',
-        gold: '#F2C14E',
-        dark: '#121212',
+        /* ================= CORE PALETTE ================= */
+        walnut: "#4A2C2A",
+        sandstone: "#E6D3B1",
+        snow: "#FAFAFA",
+        charcoal: "#1F2937",
+
+        /* ================= LIGHT MODE ================= */
+        light: {
+          bg: "#FAFAFA",            // main background
+          surface: "#FFFFFF",       // cards
+          section: "#E6D3B1",        // soft sections
+          text: "#1F2937",           // primary text
+          textMuted: "#6B7280",
+          border: "#E5E7EB",
+          accent: "#4A2C2A",         // CTAs
+        },
+
+        /* ================= DARK MODE ================= */
+        dark: {
+          bg: "#111827",             // softer than pure black
+          surface: "#1F2937",        // cards
+          section: "#2A1E1D",         // walnut-tinted dark
+          text: "#FAFAFA",
+          textMuted: "#CBD5E1",
+          border: "#374151",
+          accent: "#E6D3B1",          // sandstone glow
+        },
       },
+
       fontFamily: {
-        poppins: ['Poppins', 'sans-serif'],
-        inter: ['Inter', 'sans-serif'],
-        playfair: ['Playfair Display', 'serif'],
+        inter: ["Inter", "sans-serif"],
+        playfair: ["Playfair Display", "serif"],
+        poppins: ["Poppins", "sans-serif"],
       },
+
       animation: {
-        blink: 'blink 1s step-end infinite',
-        fade: 'fadeIn 0.6s ease forwards',
-        borderGlow: 'borderGlow 4s linear infinite', // added here
+        fade: "fadeIn 0.6s ease-out forwards",
+        glow: "glow 3.5s ease-in-out infinite",
       },
+
       keyframes: {
-        blink: {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0' },
-        },
         fadeIn: {
-          from: { opacity: '0', transform: 'translateY(20px)' },
-          to: { opacity: '1', transform: 'translateY(0)' },
+          from: { opacity: "0", transform: "translateY(14px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
         },
-        borderGlow: {
-          '0%, 100%': { opacity: '0.7', filter: 'hue-rotate(0deg)' },
-          '50%': { opacity: '1', filter: 'hue-rotate(180deg)' },
+        glow: {
+          "0%, 100%": { boxShadow: "0 0 0 rgba(230,211,177,0.15)" },
+          "50%": { boxShadow: "0 0 22px rgba(230,211,177,0.35)" },
         },
       },
     },
   },
   plugins: [],
-}
+};

@@ -13,10 +13,10 @@ const Contact = () => {
 
     emailjs
       .sendForm(
-        "service_yu5ybeu",     // ✅ Replace with your EmailJS service ID
-        "template_fn27s7i",    // ✅ Replace with your EmailJS template ID
+        "service_yu5ybeu",
+        "template_fn27s7i",
         form.current,
-        "02VVeEUEAX3ncdVXS"    // ✅ Replace with your EmailJS public key
+        "02VVeEUEAX3ncdVXS"
       )
       .then(
         () => {
@@ -26,8 +26,7 @@ const Contact = () => {
           });
           form.current.reset();
         },
-        (error) => {
-          console.error("Error:", error);
+        () => {
           setFormStatus({
             message: "❌ Failed to send message. Try again later.",
             type: "error",
@@ -38,13 +37,20 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20">
+    <section id="contact" className="py-20 bg-light-bg dark:bg-dark-bg">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 mt-5 font-poppins">
-          Get In <span className="text-teal">Touch</span>
+        {/* Heading */}
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 mt-5 font-poppins text-light-text dark:text-dark-text">
+          Get In{" "}
+          <span className="text-light-accent dark:text-dark-accent">
+            Touch
+          </span>
         </h2>
-        <p className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
-          Have a project in mind or want to discuss potential opportunities? Feel free to reach out!
+
+        <p className="text-center mb-12 max-w-2xl mx-auto
+                      text-light-textMuted dark:text-dark-textMuted">
+          Have a project in mind or want to discuss potential opportunities?
+          Feel free to reach out!
         </p>
 
         <div className="flex flex-col lg:flex-row gap-12">
@@ -53,7 +59,10 @@ const Contact = () => {
             <form ref={form} onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="user_name" className="block mb-2 font-medium">
+                  <label
+                    htmlFor="user_name"
+                    className="block mb-2 font-medium text-light-text dark:text-dark-text"
+                  >
                     Your Name
                   </label>
                   <input
@@ -61,11 +70,22 @@ const Contact = () => {
                     id="user_name"
                     name="user_name"
                     required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-teal focus:border-teal bg-white dark:bg-gray-800"
+                    className="
+                      w-full px-4 py-3 rounded-lg
+                      bg-light-surface dark:bg-dark-surface
+                      border border-light-border dark:border-dark-border
+                      text-light-text dark:text-dark-text
+                      focus:ring-2 focus:ring-light-accent
+                      focus:border-light-accent
+                    "
                   />
                 </div>
+
                 <div>
-                  <label htmlFor="user_email" className="block mb-2 font-medium">
+                  <label
+                    htmlFor="user_email"
+                    className="block mb-2 font-medium text-light-text dark:text-dark-text"
+                  >
                     Email Address
                   </label>
                   <input
@@ -73,25 +93,45 @@ const Contact = () => {
                     id="user_email"
                     name="user_email"
                     required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-teal focus:border-teal bg-white dark:bg-gray-800"
+                    className="
+                      w-full px-4 py-3 rounded-lg
+                      bg-light-surface dark:bg-dark-surface
+                      border border-light-border dark:border-dark-border
+                      text-light-text dark:text-dark-text
+                      focus:ring-2 focus:ring-light-accent
+                      focus:border-light-accent
+                    "
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="subject" className="block mb-2 font-medium">
+                <label
+                  htmlFor="subject"
+                  className="block mb-2 font-medium text-light-text dark:text-dark-text"
+                >
                   Subject
                 </label>
                 <input
                   type="text"
                   id="subject"
                   name="subject"
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-teal focus:border-teal bg-white dark:bg-gray-800"
+                  className="
+                    w-full px-4 py-3 rounded-lg
+                    bg-light-surface dark:bg-dark-surface
+                    border border-light-border dark:border-dark-border
+                    text-light-text dark:text-dark-text
+                    focus:ring-2 focus:ring-light-accent
+                    focus:border-light-accent
+                  "
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block mb-2 font-medium">
+                <label
+                  htmlFor="message"
+                  className="block mb-2 font-medium text-light-text dark:text-dark-text"
+                >
                   Your Message
                 </label>
                 <textarea
@@ -99,14 +139,26 @@ const Contact = () => {
                   name="message"
                   rows="5"
                   required
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-teal focus:border-teal bg-white dark:bg-gray-800"
-                ></textarea>
+                  className="
+                    w-full px-4 py-3 rounded-lg
+                    bg-light-surface dark:bg-dark-surface
+                    border border-light-border dark:border-dark-border
+                    text-light-text dark:text-dark-text
+                    focus:ring-2 focus:ring-light-accent
+                    focus:border-light-accent
+                  "
+                />
               </div>
 
               <button
                 type="submit"
                 disabled={isSending}
-                className="w-full md:w-auto px-8 py-3 bg-teal text-white rounded-lg font-medium hover:bg-teal-600 transition"
+                className="
+                  w-full md:w-auto px-8 py-3 rounded-lg font-medium
+                  bg-light-accent text-snow
+                  dark:bg-dark-accent dark:text-charcoal
+                  hover:opacity-90 transition
+                "
               >
                 {isSending ? "Sending..." : "Send Message"}
               </button>
@@ -116,8 +168,8 @@ const Contact = () => {
               <div
                 className={`mt-6 p-4 rounded-lg ${
                   formStatus.type === "success"
-                    ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                    : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
+                    ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200"
+                    : "bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-200"
                 }`}
               >
                 {formStatus.message}
@@ -127,91 +179,68 @@ const Contact = () => {
 
           {/* ===== Contact Info ===== */}
           <div className="lg:w-1/2">
-            <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg h-full">
-              <h3 className="text-2xl font-bold mb-6 font-poppins">Contact Information</h3>
+            <div
+              className="
+                p-8 rounded-xl shadow-lg h-full
+                bg-light-surface dark:bg-dark-surface
+                border border-light-border dark:border-dark-border
+              "
+            >
+              <h3 className="text-2xl font-bold mb-6 font-poppins text-light-text dark:text-dark-text">
+                Contact Information
+              </h3>
+
               <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="bg-teal/10 p-3 rounded-lg mr-4">
-                    <i className="fas fa-map-marker-alt text-teal"></i>
+                {[
+                  { icon: "map-marker-alt", label: "Location", value: "Kathua, J&K" },
+                  { icon: "envelope", label: "Email", value: "nitishchoudharyc2@gmail.com" },
+                  { icon: "phone-alt", label: "Phone", value: "+91 (600) 655-6223" },
+                  { icon: "clock", label: "Working Hours", value: "Mon–Fri: 9AM - 5PM" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start">
+                    <div
+                      className="
+                        p-3 rounded-lg mr-4
+                        bg-light-accent/10 dark:bg-dark-accent/10
+                      "
+                    >
+                      <i
+                        className={`fas fa-${item.icon}
+                                    text-light-accent dark:text-dark-accent`}
+                      ></i>
+                    </div>
+                    <div>
+                      <h4 className="font-bold mb-1 text-light-text dark:text-dark-text">
+                        {item.label}
+                      </h4>
+                      <p className="text-light-textMuted dark:text-dark-textMuted">
+                        {item.value}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-bold mb-1">Location</h4>
-                    <p className="text-gray-600 dark:text-gray-300">Kathua, J&amp;K</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="bg-teal/10 p-3 rounded-lg mr-4">
-                    <i className="fas fa-envelope text-teal"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-bold mb-1">Email</h4>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      nitishchoudharyc2@gmail.com
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="bg-teal/10 p-3 rounded-lg mr-4">
-                    <i className="fas fa-phone-alt text-teal"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-bold mb-1">Phone</h4>
-                    <p className="text-gray-600 dark:text-gray-300">+91 (600) 655-6223</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="bg-teal/10 p-3 rounded-lg mr-4">
-                    <i className="fas fa-clock text-teal"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-bold mb-1">Working Hours</h4>
-                    <p className="text-gray-600 dark:text-gray-300">Mon–Fri: 9AM - 5PM</p>
-                  </div>
-                </div>
+                ))}
               </div>
 
+              {/* Socials */}
               <div className="mt-8">
-                <h4 className="font-bold mb-4">Follow Me</h4>
-                <div className="flex space-x-4">
-                  <a
-                    href="https://x.com/NitishChahal_"
-                    className="social-icon"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="fab fa-twitter"></i>
+                <h4 className="font-bold mb-4 text-light-text dark:text-dark-text">
+                  Follow Me
+                </h4>
+                <div className="flex space-x-4 text-light-accent dark:text-dark-accent">
+                  <a href="https://x.com/NitishChahal_" target="_blank" rel="noopener noreferrer">
+                    <i className="fab fa-twitter text-xl"></i>
                   </a>
-                  <a
-                    href="https://www.linkedin.com/in/nitish-choudhary-mr-13-jatt/"
-                    className="social-icon"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="fab fa-linkedin-in"></i>
+                  <a href="https://www.linkedin.com/in/nitish-choudhary-mr-13-jatt/" target="_blank" rel="noopener noreferrer">
+                    <i className="fab fa-linkedin-in text-xl"></i>
                   </a>
-                  <a
-                    href="https://www.instagram.com/jk08edits/"
-                    className="social-icon"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="fab fa-instagram"></i>
+                  <a href="https://www.instagram.com/jk08edits/" target="_blank" rel="noopener noreferrer">
+                    <i className="fab fa-instagram text-xl"></i>
                   </a>
-                  <a
-                    href="https://github.com/nitishchahal"
-                    className="social-icon"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="fab fa-github"></i>
+                  <a href="https://github.com/nitishchahal" target="_blank" rel="noopener noreferrer">
+                    <i className="fab fa-github text-xl"></i>
                   </a>
-                  <a
-                    href="https://www.behance.net/nitishchoudhary11/appreciated"
-                    className="social-icon"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="fab fa-behance"></i>
+                  <a href="https://www.behance.net/nitishchoudhary11/appreciated" target="_blank" rel="noopener noreferrer">
+                    <i className="fab fa-behance text-xl"></i>
                   </a>
                 </div>
               </div>

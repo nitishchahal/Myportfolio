@@ -19,17 +19,23 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="py-16 px-6 md:px-20 bg-white dark:bg-gray-900"
+      className="py-16 px-6 md:px-20 bg-light-bg dark:bg-dark-bg"
     >
       {/* Section Heading */}
       <motion.h2
-        className="text-3xl font-bold text-center mb-10 text-navy dark:text-gold"
+        className="
+          text-3xl font-bold text-center mb-10
+          text-light-text dark:text-dark-text
+        "
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        Professional Skills
+        <span className="text-light-accent dark:text-dark-accent">
+          Professional
+        </span>{" "}
+        Skills
       </motion.h2>
 
       {/* Skills Grid */}
@@ -43,7 +49,7 @@ const Skills = () => {
           {
             icon: "fas fa-video",
             title: "Videography & Editing",
-            desc: "Adobe Premiere Pro, CapCut, Color Grading, Reels Editing",
+            desc: "DaVinci Resolve, CapCut, Color Grading, Reels Editing",
           },
           {
             icon: "fas fa-camera",
@@ -58,7 +64,12 @@ const Skills = () => {
         ].map((skill, i) => (
           <motion.div
             key={i}
-            className="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl shadow transition"
+            className="
+              p-6 rounded-xl transition
+              bg-light-surface dark:bg-dark-surface
+              border border-light-border dark:border-dark-border
+              shadow-sm
+            "
             variants={cardVariants}
             initial="hidden"
             whileInView="visible"
@@ -66,11 +77,29 @@ const Skills = () => {
             custom={i}
             viewport={{ once: true, amount: 0.2 }}
           >
-            <i className={`${skill.icon} text-3xl text-teal mb-3`}></i>
-            <h3 className="text-xl font-semibold mb-1 text-navy dark:text-white">
+            <i
+              className={`
+                ${skill.icon} text-3xl mb-3
+                text-light-accent dark:text-dark-accent
+              `}
+            ></i>
+
+            <h3
+              className="
+                text-xl font-semibold mb-1
+                text-light-text dark:text-dark-text
+              "
+            >
               {skill.title}
             </h3>
-            <p className="text-gray-600 dark:text-gray-300">{skill.desc}</p>
+
+            <p
+              className="
+                text-light-textMuted dark:text-dark-textMuted
+              "
+            >
+              {skill.desc}
+            </p>
           </motion.div>
         ))}
       </div>
