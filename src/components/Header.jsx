@@ -3,8 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Logos
-import logoDark from "../Assets/logo1.png";   // Dark mode logo
-import logoLight from "../Assets/logo2.png";  // Light mode logo
+import logoDark from "../Assets/Logo1.png";   // Dark mode logo
+import logoLight from "../Assets/Logo2.png";  // Light mode logo
 
 const NAV_LINKS = [
   { name: "Home", path: "/" },
