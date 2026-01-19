@@ -1,38 +1,38 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Globe, Smartphone, Palette, ArrowRight, X } from "lucide-react";
+import ecomm from '../../public/images/ecomm.png';
+import vill from '../../public/images/vill.png';
+import weather from '../../public/images/weather.png';
+import password from '../../public/images/pass.png';
 
 /* ================= PROJECT DATA ================= */
 const PROJECTS = [
   {
     title: "E-Commerce Website",
     desc: "Modern online store with seamless checkout and scalable architecture.",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1470&q=80",
+    image: ecomm,
     icon: Globe,
     projectUrl: "https://e-commerce-frontend-ten-olive.vercel.app/",
   },
   {
     title: "Village Inquiry Portal",
     desc: "A platform connecting rural residents with essential government services.",
-    image:
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1470&q=80",
+    image: vill,
     icon: Smartphone,
     projectUrl: "https://nitishchahal.github.io/Village-Inquiry/",
   },
   {
     title: "Weather App",
     desc: "Real-time weather updates with clean UI and fast performance.",
-    image:
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1064&q=80",
+    image: weather,
     icon: Globe,
     projectUrl: "https://nitishchahal.github.io/Weather/",
   },
   {
     title: "Password Generator",
     desc: "Secure password generation with customizable strength options.",
-    image:
-      "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1469&q=80",
+    image: password,
     icon: Globe,
     projectUrl: "https://nitishchahal.github.io/Password-Generator/",
   },
@@ -86,7 +86,7 @@ const ProjectCard = ({ item }) => {
 
         <div
           className="
-            absolute inset-0 opacity-0 group-hover:opacity-100
+            absolute inset-0 opacity-0 group-hover:opacity-50
             bg-gradient-to-b
             from-light-accent/80 to-charcoal/95
             transition-opacity duration-500

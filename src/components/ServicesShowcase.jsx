@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import {
   Instagram,
   Youtube,
   Facebook,
-  Twitter,
   Play,
   ArrowRight,
 } from "lucide-react";
@@ -35,14 +35,6 @@ const SOCIAL_REELS = [
     link: "https://facebook.com",
   },
   {
-    platform: "X (Twitter)",
-    desc: "Visual clips, reels & high-impact short posts.",
-    stats: "120K impressions",
-    image: "/images/reels/twitter.jpg",
-    icon: Twitter,
-    link: "https://x.com",
-  },
-  {
     platform: "Featured Portfolio",
     desc: "Top performing reels curated in one place.",
     stats: "Top 1% engagement",
@@ -52,186 +44,88 @@ const SOCIAL_REELS = [
   },
 ];
 
-/* ================= CARD ================= */
-const SocialCard = ({ item }) => {
-  const Icon = item.icon;
+/* ================= INSTAGRAM EMBEDS ================= */
+const INSTAGRAM_EMBEDS = [
+  "https://www.instagram.com/reel/DHxz_M_OjQ2/",
+  "https://www.instagram.com/p/DTDnZ2pkyEG/",
+  "https://www.instagram.com/reel/DCzsL9Mpgyj/",
+];
 
-  return (
-    <motion.div
-      className="
-        group relative h-[450px] rounded-[2rem] overflow-hidden
-        bg-light-surface dark:bg-dark-surface
-        border border-light-border dark:border-dark-border
-        shadow-sm hover:shadow-2xl transition-all duration-500
-      "
-    >
-      {/* IMAGE */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={item.image}
-          alt={item.platform}
-          className="
-            w-full h-full object-cover grayscale
-            group-hover:grayscale-0 group-hover:scale-110
-            transition-all duration-700
-          "
-        />
 
-        <div
-          className="
-            absolute inset-0
-            bg-light-bg/70 dark:bg-dark-bg/60
-            group-hover:opacity-0 transition-opacity duration-500
-          "
-        />
 
-        <div
-          className="
-            absolute inset-0 opacity-0 group-hover:opacity-100
-            bg-gradient-to-b
-            from-light-accent/80 to-charcoal/95
-            transition-opacity duration-500
-          "
-        />
-      </div>
-
-      {/* PLAY ICON */}
-      <div
-        className="
-          absolute inset-0 z-10 flex items-center justify-center
-          opacity-0 group-hover:opacity-100 transition
-        "
-      >
-        <Play size={60} className="text-snow drop-shadow-xl" />
-      </div>
-
-      {/* CONTENT */}
-      <div className="relative z-20 p-8 h-full flex flex-col">
-        {/* ICON */}
-        <div
-          className="
-            w-14 h-14 rounded-2xl flex items-center justify-center
-            bg-light-surface dark:bg-dark-bg
-            shadow-md
-            border border-light-border dark:border-dark-border
-            group-hover:bg-light-accent/20 transition-all duration-300
-          "
-        >
-          <Icon
-            size={26}
-            strokeWidth={1.8}
-            className="
-              stroke-light-accent dark:stroke-dark-accent
-              group-hover:stroke-snow transition-colors duration-300
-            "
-          />
-        </div>
-
-        {/* TEXT */}
-        <div className="mt-auto">
-          <h3
-            className="
-              text-2xl font-bold tracking-tight
-              text-light-text dark:text-dark-text
-              group-hover:text-snow transition
-            "
-          >
-            {item.platform}
-          </h3>
-
-          <p
-            className="
-              mt-4 text-sm line-clamp-2 transition
-              text-light-textMuted dark:text-dark-textMuted
-              group-hover:text-snow/80
-            "
-          >
-            {item.desc}
-          </p>
-
-          <p
-            className="
-              mt-2 text-xs font-semibold tracking-wide
-              text-light-accent dark:text-dark-accent
-              group-hover:text-snow transition
-            "
-          >
-            {item.stats}
-          </p>
-
-          <a
-            href={item.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
-              mt-6 inline-flex items-center gap-2
-              text-xs font-bold uppercase tracking-[0.15em]
-              text-light-accent dark:text-dark-accent
-              group-hover:text-snow transition
-            "
-          >
-            Watch Reel <ArrowRight size={14} />
-          </a>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
-/* ================= MAIN SECTION ================= */
+/* ================= MAIN COMPONENT ================= */
 export default function SocialReelsShowcase() {
-  return (
-    <section className="py-24 bg-light-bg dark:bg-dark-bg">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-        {/* HEADER */}
-        <div className="mb-16 max-w-2xl">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="w-12 h-[3px] bg-light-accent dark:bg-dark-accent rounded-full" />
-            <span className="text-xs font-black tracking-[0.3em] uppercase
-                             text-light-textMuted dark:text-dark-textMuted">
-              Social Media
-            </span>
-          </div>
 
-          <motion.h2
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="
-              text-4xl md:text-6xl font-black tracking-tighter
-              text-light-text dark:text-dark-text
-            "
-          >
-            Viral{" "}
-            <span className="text-light-accent dark:text-dark-accent">
+  // Load Instagram script once
+  useEffect(() => {
+    if (!window.instgrm) {
+      const script = document.createElement("script");
+      script.src = "https://www.instagram.com/embed.js";
+      script.async = true;
+      document.body.appendChild(script);
+    } else {
+      window.instgrm.Embeds.process();
+    }
+  }, []);
+
+  return (
+    <section className="relative py-32 bg-black overflow-hidden text-white">
+      
+      {/* Background accents */}
+      <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-pink-500/20 rounded-full blur-[120px]" />
+      <div className="absolute top-1/3 -right-40 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[120px]" />
+
+      <div className="relative max-w-7xl mx-auto px-6">
+
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="max-w-2xl mb-24"
+        >
+          <p className="text-xs font-bold tracking-[0.3em] uppercase text-pink-400 mb-4">
+            Social Media Showcase
+          </p>
+
+          <h2 className="text-4xl md:text-6xl font-black leading-tight">
+            Viral <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">
               Reels
             </span>{" "}
-            & Content
-          </motion.h2>
+            & High-Impact Content
+          </h2>
 
-          <p
-            className="
-              mt-6 font-medium max-w-sm text-lg leading-relaxed
-              text-light-textMuted dark:text-dark-textMuted
-            "
-          >
-            Showcasing high-performing reels across platforms with real
-            engagement & reach.
+          <p className="mt-6 text-lg text-white/70 leading-relaxed">
+            Showcasing real engagement, cinematic storytelling, and
+            performance-driven short-form content across platforms.
           </p>
+        </motion.div>
+
+        {/* Instagram Embeds */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-32">
+          {INSTAGRAM_EMBEDS.map((url, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="rounded-2xl overflow-hidden bg-white shadow-2xl"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  <blockquote 
+                    class="instagram-media"
+                    data-instgrm-permalink="${url}"
+                    data-instgrm-version="14"
+                    style="max-width:540px;margin:auto;"
+                  ></blockquote>
+                `,
+              }}
+            />
+          ))}
         </div>
 
-        {/* GRID */}
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8"
-        >
-          {SOCIAL_REELS.map((item, index) => (
-            <SocialCard key={index} item={item} />
-          ))}
-        </motion.div>
       </div>
     </section>
   );
