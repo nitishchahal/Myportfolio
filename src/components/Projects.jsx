@@ -1,10 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Globe, Smartphone, Palette, ArrowRight, X } from "lucide-react";
-import ecomm from '../Assets/images/ecomm.png';
-import vill from '../Assets/images/vill.png';
-import weather from '../Assets/images/weather.png';
-import password from '../Assets/images/pass.png';
+import ecomm from '/images/ecomm.png';
+import vill from '/images/vill.png';
+import weather from '/images/weather.png';
+import password from '/images/pass.png';
 
 /* ================= PROJECT DATA ================= */
 const PROJECTS = [

@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 
+import img1 from '../../public/images/photo_2025-04-12_15-57-21.jpg';
+
 /* ================= SKILLS DATA ================= */
 const skillsData = [
   { name: "HTML/CSS/JS/React", percentage: 90 },
@@ -90,7 +92,7 @@ const About = () => {
               "
             >
               <img
-                src="/photo_2025-04-12_15-57-21.jpg"
+                src={img1}
                 alt="Nitish Choudhary"
                 className="w-full max-w-md mx-auto rounded-xl"
               />
