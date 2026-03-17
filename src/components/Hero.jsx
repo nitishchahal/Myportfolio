@@ -6,54 +6,124 @@ const Hero = () => {
   const typingTextRef = useRef(null);
 
   useEffect(() => {
-    if (window.particlesJS) {
-      window.particlesJS("particles-js", {
-        particles: {
-          number: { value: 70, density: { enable: true, value_area: 900 } },
-          color: { value: "#4A2C2A" }, // walnut
-          shape: { type: "circle" },
-          opacity: { value: 0.35 },
-          size: { value: 3, random: true },
-          line_linked: {
-            enable: true,
-            distance: 160,
-            color: "#E6D3B1", // sandstone
-            opacity: 0.3,
-            width: 1,
-          },
-          move: { enable: true, speed: 1.8, out_mode: "out" },
-        },
-        interactivity: {
-          detect_on: "canvas",
-          events: {
-            onhover: { enable: true, mode: "grab" },
-            onclick: { enable: true, mode: "push" },
-            resize: true,
-          },
-          modes: {
-            grab: { distance: 140, line_linked: { opacity: 0.6 } },
-            push: { particles_nb: 3 },
-          },
-        },
-        retina_detect: true,
-      });
+  let timeout;
+
+  // ✅ Function to get current theme color
+  const getLineColor = () => {
+    const isDark = document.documentElement.classList.contains("dark");
+    return isDark ? "#ffffff" : "#000000";
+  };
+
+  // ✅ Init particles
+  const initParticles = () => {
+    if (!window.particlesJS) return;
+
+    // 🧹 Remove old canvas (IMPORTANT)
+    const container = document.getElementById("particles-js");
+          const isDark = document.documentElement.classList.contains("dark");
+
+    if (container) {
+      container.innerHTML = "";
     }
 
-    const text = "Nitish Choudhary";
-    let i = 0;
+    window.particlesJS("particles-js", {
 
-    function typeWriter() {
-      if (!typingTextRef.current) return;
-      if (i < text.length) {
-        typingTextRef.current.textContent += text.charAt(i);
-        i++;
-        setTimeout(typeWriter, 90);
-      }
+particles: {
+  number: { value: 70, density: { enable: true, value_area: 900 } },
+
+  // 🎨 Particle color
+  color: {
+    value: isDark ? "#E6D3B1" : "#4A2C2A",
+  },
+
+  shape: { type: "circle" },
+
+  // ✨ Opacity balance
+  opacity: {
+    value: isDark ? 0.8 : 0.5,
+  },
+
+  size: {
+    value: isDark ? 4 : 3,
+    random: true,
+  },
+
+  // 🔥 GLOW IN BOTH MODES
+  shadow: {
+    enable: true,
+    color: isDark ? "#ffffff" : "#000000",
+    blur: isDark ? 15 : 6, // 👈 strong vs soft glow
+  },
+
+  line_linked: {
+    enable: true,
+    distance: 160,
+    color: isDark ? "#ffffff" : "#000000",
+    opacity: isDark ? 0.6 : 0.35,
+    width: 1,
+  },
+
+  move: {
+    enable: true,
+    speed: 1.8,
+    out_mode: "out",
+  },
+},
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: true, mode: "push" },
+          resize: true,
+        },
+        modes: {
+          grab: { distance: 140, line_linked: { opacity: 0.6 } },
+          push: { particles_nb: 3 },
+        },
+      },
+      retina_detect: true,
+    });
+  };
+
+  // ✅ Initial run
+  initParticles();
+
+  // ✅ Watch for theme change (Tailwind dark class)
+  const observer = new MutationObserver(() => {
+    initParticles(); // 🔥 re-init on theme switch
+  });
+
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+
+  // ✅ Typewriter (unchanged but safe)
+  const text = "Nitish Choudhary";
+  let index = 0;
+
+  function typeWriter() {
+    if (!typingTextRef.current) return;
+
+    if (index < text.length) {
+      typingTextRef.current.textContent += text[index];
+      index++;
+      timeout = setTimeout(typeWriter, 90);
     }
+  }
 
-    const timeoutId = setTimeout(typeWriter, 500);
-    return () => clearTimeout(timeoutId);
-  }, []);
+  if (typingTextRef.current) {
+    typingTextRef.current.textContent = "";
+  }
+
+  timeout = setTimeout(typeWriter, 500);
+
+  // ✅ Cleanup
+  return () => {
+    if (timeout) clearTimeout(timeout);
+    observer.disconnect();
+  };
+}, []);
 
   return (
     <section

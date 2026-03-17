@@ -56,113 +56,168 @@ const Contact = () => {
         <div className="flex flex-col lg:flex-row gap-12">
           {/* ===== Contact Form ===== */}
           <div className="lg:w-1/2">
-            <form ref={form} onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label
-                    htmlFor="user_name"
-                    className="block mb-2 font-medium text-light-text dark:text-dark-text"
-                  >
-                    Your Name
-                  </label>
-                  <input
-                    type="text"
-                    id="user_name"
-                    name="user_name"
-                    required
-                    className="
-                      w-full px-4 py-3 rounded-lg
-                      bg-light-surface dark:bg-dark-surface
-                      border border-light-border dark:border-dark-border
-                      text-light-text dark:text-dark-text
-                      focus:ring-2 focus:ring-light-accent
-                      focus:border-light-accent
-                    "
-                  />
-                </div>
+       <form ref={form} onSubmit={handleSubmit} className="space-y-6">
 
-                <div>
-                  <label
-                    htmlFor="user_email"
-                    className="block mb-2 font-medium text-light-text dark:text-dark-text"
-                  >
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    id="user_email"
-                    name="user_email"
-                    required
-                    className="
-                      w-full px-4 py-3 rounded-lg
-                      bg-light-surface dark:bg-dark-surface
-                      border border-light-border dark:border-dark-border
-                      text-light-text dark:text-dark-text
-                      focus:ring-2 focus:ring-light-accent
-                      focus:border-light-accent
-                    "
-                  />
-                </div>
-              </div>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-              <div>
-                <label
-                  htmlFor="subject"
-                  className="block mb-2 font-medium text-light-text dark:text-dark-text"
-                >
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  className="
-                    w-full px-4 py-3 rounded-lg
-                    bg-light-surface dark:bg-dark-surface
-                    border border-light-border dark:border-dark-border
-                    text-light-text dark:text-dark-text
-                    focus:ring-2 focus:ring-light-accent
-                    focus:border-light-accent
-                  "
-                />
-              </div>
+    {/* NAME */}
+    <div>
+      <label className="block mb-2 font-medium text-light-text dark:text-dark-text">
+        Your Name
+      </label>
 
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block mb-2 font-medium text-light-text dark:text-dark-text"
-                >
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="5"
-                  required
-                  className="
-                    w-full px-4 py-3 rounded-lg
-                    bg-light-surface dark:bg-dark-surface
-                    border border-light-border dark:border-dark-border
-                    text-light-text dark:text-dark-text
-                    focus:ring-2 focus:ring-light-accent
-                    focus:border-light-accent
-                  "
-                />
-              </div>
+      <div className="relative group">
+        <i className="
+          fas fa-user
+          absolute left-4 top-1/2 -translate-y-1/2
+          text-light-textMuted dark:text-dark-textMuted
+          group-focus-within:text-light-accent dark:group-focus-within:text-dark-accent
+          transition
+        " />
 
-              <button
-                type="submit"
-                disabled={isSending}
-                className="
-                  w-full md:w-auto px-8 py-3 rounded-lg font-medium
-                  bg-light-accent text-snow
-                  dark:bg-dark-accent dark:text-charcoal
-                  hover:opacity-90 transition
-                "
-              >
-                {isSending ? "Sending..." : "Send Message"}
-              </button>
-            </form>
+        <input
+          type="text"
+          name="user_name"
+          placeholder="Enter your name"
+          required
+          className="
+            w-full pl-12 pr-4 py-3 rounded-lg
+            bg-light-surface dark:bg-dark-surface
+            border border-light-border dark:border-dark-border
+            text-light-text dark:text-dark-text
+            placeholder:text-light-textMuted dark:placeholder:text-dark-textMuted
+
+            focus:ring-2 focus:ring-light-accent
+            focus:border-light-accent
+
+            transition-all duration-300
+          "
+        />
+      </div>
+    </div>
+
+    {/* EMAIL */}
+    <div>
+      <label className="block mb-2 font-medium text-light-text dark:text-dark-text">
+        Email Address
+      </label>
+
+      <div className="relative group">
+        <i className="
+          fas fa-envelope
+          absolute left-4 top-1/2 -translate-y-1/2
+          text-light-textMuted dark:text-dark-textMuted
+          group-focus-within:text-light-accent dark:group-focus-within:text-dark-accent
+          transition
+        " />
+
+        <input
+          type="email"
+          name="user_email"
+          placeholder="Enter your email"
+          required
+          className="
+            w-full pl-12 pr-4 py-3 rounded-lg
+            bg-light-surface dark:bg-dark-surface
+            border border-light-border dark:border-dark-border
+            text-light-text dark:text-dark-text
+            placeholder:text-light-textMuted dark:placeholder:text-dark-textMuted
+
+            focus:ring-2 focus:ring-light-accent
+            focus:border-light-accent
+
+            transition-all duration-300
+          "
+        />
+      </div>
+    </div>
+  </div>
+
+  {/* SUBJECT */}
+  <div>
+    <label className="block mb-2 font-medium text-light-text dark:text-dark-text">
+      Subject
+    </label>
+
+    <div className="relative group">
+      <i className="
+        fas fa-tag
+        absolute left-4 top-1/2 -translate-y-1/2
+        text-light-textMuted dark:text-dark-textMuted
+        group-focus-within:text-light-accent dark:group-focus-within:text-dark-accent
+        transition
+      " />
+
+      <input
+        type="text"
+        name="subject"
+        placeholder="Subject"
+        className="
+          w-full pl-12 pr-4 py-3 rounded-lg
+          bg-light-surface dark:bg-dark-surface
+          border border-light-border dark:border-dark-border
+          text-light-text dark:text-dark-text
+          placeholder:text-light-textMuted dark:placeholder:text-dark-textMuted
+
+          focus:ring-2 focus:ring-light-accent
+          focus:border-light-accent
+
+          transition-all duration-300
+        "
+      />
+    </div>
+  </div>
+
+  {/* MESSAGE */}
+  <div>
+    <label className="block mb-2 font-medium text-light-text dark:text-dark-text">
+      Your Message
+    </label>
+
+    <div className="relative group">
+      <i className="
+        fas fa-comment
+        absolute left-4 top-4
+        text-light-textMuted dark:text-dark-textMuted
+        group-focus-within:text-light-accent dark:group-focus-within:text-dark-accent
+        transition
+      " />
+
+      <textarea
+        name="message"
+        rows="5"
+        placeholder="Write your message..."
+        required
+        className="
+          w-full pl-12 pr-4 py-3 rounded-lg
+          bg-light-surface dark:bg-dark-surface
+          border border-light-border dark:border-dark-border
+          text-light-text dark:text-dark-text
+          placeholder:text-light-textMuted dark:placeholder:text-dark-textMuted
+
+          focus:ring-2 focus:ring-light-accent
+          focus:border-light-accent
+
+          transition-all duration-300
+        "
+      />
+    </div>
+  </div>
+
+  {/* BUTTON */}
+  <button
+    type="submit"
+    disabled={isSending}
+    className="
+      w-full md:w-auto px-8 py-3 rounded-lg font-medium
+      bg-light-accent text-snow
+      dark:bg-dark-accent dark:text-charcoal
+      hover:opacity-90 transition
+    "
+  >
+    {isSending ? "Sending..." : "Send Message"}
+  </button>
+</form>
 
             {formStatus.message && (
               <div

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 
-import img1 from '../../public/images/photo_2025-04-12_15-57-21.jpg';
+import img1 from '/Profile.png';
 
 /* ================= SKILLS DATA ================= */
 const skillsData = [
@@ -86,9 +86,9 @@ const About = () => {
           <div className="md:w-1/2">
             <div
               className="
-                relative group rounded-xl shadow-2xl
+                relative group rounded-xl 
                 transition duration-500 hover:scale-105
-                border border-transparent
+               
               "
             >
               <img
@@ -97,13 +97,13 @@ const About = () => {
                 className="w-full max-w-md mx-auto rounded-xl"
               />
 
-              <div
+              {/* <div
                 className="
                   absolute inset-0 rounded-xl transition duration-500
                   bg-light-accent/20 dark:bg-dark-accent/20
                   opacity-0 group-hover:opacity-100
                 "
-              />
+              /> */}
             </div>
           </div>
 
@@ -156,7 +156,7 @@ const About = () => {
             {/* Buttons */}
             <div className="flex flex-wrap gap-4">
               <a
-                href="./Nitish_Choudhary.pdf"
+                href="./Nitish Resumeee.pdf"
                 className="
                   px-6 py-2 rounded-lg font-medium
                   bg-light-accent text-snow
