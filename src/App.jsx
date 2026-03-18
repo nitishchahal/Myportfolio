@@ -168,7 +168,7 @@ function App() {
             />
             {/* Individual routes show only that section */}
             <Route path="/about" element={<About />} />
-            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/projects" element={<Portfolio />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/contact" element={<Contact />} />

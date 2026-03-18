@@ -3,20 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Nitish Choudhary | Visual Storyteller</title>
     <meta name="description" content="Professional portfolio of Nitish Choudhary, Web Developer and Visual Creator" />
     <meta name="author" content="Nitish Choudhary" />
-    <meta name="keywords" content="Web Developer, Photographer, Videographer, Video Editor, Data Entry, Excel Specialist, Nitish Choudhary, Portfolio, Visual Storyteller" />
+    <meta name="keywords" content="Web Developer, Photographer, Videographer, Video Editor, Portfolio, Nitish Choudhary" />
 
-    <!-- Font Awesome and Google Fonts links -->
+    <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-    <!-- Core particles.js library from a CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <!-- ✅ Default favicon (fallback) -->
+    <link rel="icon" href="/favicon-light.png" />
+
+    <!-- ✅ Dynamic favicon based on system theme -->
+    <script>
+      function setFavicon(isDark) {
+        const existing = document.querySelector("link[rel='icon']");
+
+        const newFavicon = document.createElement("link");
+        newFavicon.rel = "icon";
+
+        // prevent cache issue
+        newFavicon.href =
+          (isDark ? "/favicon-dark.png" : "/favicon-light.png") +
+          "?v=" +
+          Date.now();
+
+        if (existing) {
+          document.head.removeChild(existing);
+        }
+
+        document.head.appendChild(newFavicon);
+      }
+
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+      // Run AFTER DOM is ready (fixes your error)
+      window.addEventListener("DOMContentLoaded", () => {
+        setFavicon(mediaQuery.matches);
+      });
+
+      // Listen for system theme change
+      mediaQuery.addEventListener("change", (e) => {
+        setFavicon(e.matches);
+      });
+    </script>
+
+    <!-- ❌ REMOVED particles.js (it breaks Vite if unused) -->
+         <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
   </head>
+
   <body class="font-inter">
     <div id="root"></div>
+
+    <!-- React Entry -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
