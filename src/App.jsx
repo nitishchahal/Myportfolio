@@ -113,13 +113,25 @@ import Gallery from "./components/Gallery";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import BackToTop from "./components/BackToTop";
-import "./index.css";
 import ScrollToTop from "./ScrollToTop";
 import ServicesShowcase from "./components/ServicesShowcase";
+import "./index.css";
+
+// ✅ Loader Component (inline for simplicity)
+function Loader() {
+  return (
+    <div className="flex items-center justify-center h-screen bg-white dark:bg-black">
+      <span className="loader"></span>
+    </div>
+  );
+}
 
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
   const [isBackToTopVisible, setIsBackToTopVisible] = useState(false);
+
+  // ✅ NEW: loader state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     document.documentElement.className = theme;
@@ -134,24 +146,33 @@ function App() {
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    // ✅ Loader timer (you can adjust time)
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000); // 2 seconds
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timer);
+    };
   }, [theme]);
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
+  // ✅ Show loader first
+  if (loading) return <Loader />;
+
   return (
     <Router>
-      <div
-        className={`bg-gray-50 text-gray-800 dark:bg-dark dark:text-gray-200 font-inter`}
-      >
+      <div className="bg-gray-50 text-gray-800 dark:bg-dark dark:text-gray-200 font-inter">
         <Header toggleTheme={toggleTheme} theme={theme} />
 
         <main>
-        <ScrollToTop />
+          <ScrollToTop />
           <Routes>
-            {/* Home shows ALL sections stacked */}
             <Route
               path="/"
               element={
@@ -166,7 +187,6 @@ function App() {
                 </>
               }
             />
-            {/* Individual routes show only that section */}
             <Route path="/about" element={<About />} />
             <Route path="/projects" element={<Portfolio />} />
             <Route path="/gallery" element={<Gallery />} />
