@@ -8,7 +8,7 @@ const ProjectCard = ({ item }) => {
   const navigate = useNavigate();
 
   const Icon = item.icon || Globe; // ✅ FIX: fallback icon
-
+// New 
   const handleCardClick = (e) => {
     if (e.target.closest("a") || e.target.closest("button")) return;
     navigate(`/projects/${item.id}`);
