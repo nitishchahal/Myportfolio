@@ -108,7 +108,8 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Skills from "./components/Skills";
-import Portfolio from "./components/Projects";
+import Projects from "./components/Projects";
+import ProjectDetails from "./components/ProjectDetails";
 import Gallery from "./components/Gallery";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -179,7 +180,7 @@ function App() {
                 <>
                   <Hero />
                   <About />
-                  <Portfolio />
+                  <Projects />
                   <Gallery />
                   <Skills />
                   <Contact />
@@ -188,7 +189,8 @@ function App() {
               }
             />
             <Route path="/about" element={<About />} />
-            <Route path="/projects" element={<Portfolio />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:id" element={<ProjectDetails />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/contact" element={<Contact />} />

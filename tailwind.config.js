@@ -38,6 +38,8 @@ export default {
         inter: ["Inter", "sans-serif"],
         playfair: ["Playfair Display", "serif"],
         poppins: ["Poppins", "sans-serif"],
+        cursive: ["Dancing Script", "cursive"],
+      signature: ["Pacifico", "cursive"],
       },
 
       animation: {

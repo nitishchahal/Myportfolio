@@ -135,13 +135,15 @@ const PerfHoles = ({ count = 8 }) => (
 /* Single film frame */
 const FilmFrame = ({ image, index, onClick }) => {
   return (
-    <div
-      className="relative flex-shrink-0 w-72 h-64 rounded-sm overflow-hidden
-                  bg-light-border dark:bg-dark-border
-                  border border-light-border dark:border-dark-border
-                  cursor-pointer group}"
-      onClick={onClick}
-    >
+  <div
+  className="relative flex-shrink-0 w-72 h-64 rounded-sm overflow-hidden
+             bg-light-border dark:bg-dark-border
+             border border-light-border dark:border-dark-border
+             cursor-pointer group
+             transition duration-300
+             group-hover:grayscale"
+  onClick={onClick}
+>
       {/* Frame number */}
       <span
         className="absolute top-2 left-2.5 z-10 text-[9px] tracking-widest
@@ -281,13 +283,13 @@ const Gallery = () => {
     <section id="gallery" className="py-24 bg-light-bg dark:bg-dark-bg">
       {/* Header */}
       <div className="max-w-7xl mx-auto px-6 md:px-10 mb-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 font-poppins
-                       text-light-text dark:text-dark-text">
-          My{" "}
-          <span className="text-light-accent dark:text-dark-accent italic">
-            Gallery
-          </span>
-        </h2>
+       <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 
+               text-light-text dark:text-dark-text font-cursive">
+  My{" "}
+  <span className="text-light-accent dark:text-dark-accent font-cursive">
+    Gallery
+  </span>
+</h2>
         <p className="text-center max-w-2xl mx-auto mb-10 text-sm tracking-wide
                       text-light-textMuted dark:text-dark-textMuted">
           Explore my photographic journey through different themes

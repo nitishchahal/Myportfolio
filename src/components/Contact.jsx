@@ -268,9 +268,25 @@ const Contact = () => {
                       <h4 className="font-bold mb-1 text-light-text dark:text-dark-text">
                         {item.label}
                       </h4>
-                      <p className="text-light-textMuted dark:text-dark-textMuted">
-                        {item.value}
-                      </p>
+                     <p className="text-light-textMuted dark:text-dark-textMuted">
+  {item.label === "Email" ? (
+    <a
+      href={`mailto:${item.value}`}
+      className="hover:text-light-accent dark:hover:text-dark-accent transition"
+    >
+      {item.value}
+    </a>
+  ) : item.label === "Phone" ? (
+    <a
+      href={`tel:${item.value.replace(/\D/g, "")}`}
+      className="hover:text-light-accent dark:hover:text-dark-accent transition"
+    >
+      {item.value}
+    </a>
+  ) : (
+    item.value
+  )}
+</p>
                     </div>
                   </div>
                 ))}
