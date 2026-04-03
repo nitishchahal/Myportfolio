@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 
 import img1 from '/Profile.png';
+import Resume from "/Nitish_Resume.pdf";
 
 /* ================= SKILLS DATA ================= */
 const skillsData = [
@@ -156,7 +157,7 @@ const About = () => {
             {/* Buttons */}
             <div className="flex flex-wrap gap-4">
               <a
-                href="./Nitish Resumeee.pdf"
+                href={Resume}
                 className="
                   px-6 py-2 rounded-lg font-medium
                   bg-light-accent text-snow
