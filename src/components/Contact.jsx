@@ -249,8 +249,7 @@ const Contact = () => {
                 {[
                   { icon: "map-marker-alt", label: "Location", value: "Kathua, J&K" },
                   { icon: "envelope", label: "Email", value: "nitishchoudharyc2@gmail.com" },
-                  { icon: "phone-alt", label: "Phone", value: "+91 (600) 655-6223" },
-                  { icon: "clock", label: "Working Hours", value: "Mon–Fri: 9AM - 5PM" },
+                  
                 ].map((item, i) => (
                   <div key={i} className="flex items-start">
                     <div
