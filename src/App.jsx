@@ -101,7 +101,7 @@
 
 
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
@@ -116,26 +116,10 @@ import Footer from "./components/Footer";
 import BackToTop from "./components/BackToTop";
 import ScrollToTop from "./ScrollToTop";
 import ServicesShowcase from "./components/ServicesShowcase";
+import Loader from "./components/Loader";
 import "./index.css";
 
-// ✅ Loader Component (inline for simplicity)
-function Loader() {
-  return (
-    <div className="fixed inset-0 flex items-center justify-center bg-white dark:bg-black">
-      <div className="text-center">
-        <h1 className="loader-text text-5xl md:text-7xl font-extrabold tracking-[0.25em] uppercase">
-          JK08<span className="text-red-500">edits</span>
-        </h1>
 
-        <div className="mt-6 flex justify-center">
-          <div className="h-1 w-48 overflow-hidden rounded-full bg-gray-200 dark:bg-gray-800">
-            <div className="loader-bar h-full bg-red-500"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 
 function App() {
@@ -158,24 +142,16 @@ function App() {
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    // ✅ Loader timer (you can adjust time)
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000); // 2 seconds
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearTimeout(timer);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [theme]);
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
-  // ✅ Show loader first
-  if (loading) return <Loader />;
+  const handleLoaderComplete = useCallback(() => setLoading(false), []);
+
+  if (loading) return <Loader duration={1500} onComplete={handleLoaderComplete} />;
 
   return (
     <Router>

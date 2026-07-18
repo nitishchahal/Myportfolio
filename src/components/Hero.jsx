@@ -127,22 +127,21 @@ const Hero = () => {
           className="
             text-5xl md:text-7xl font-bold font-poppins mb-6
             tracking-tight min-h-[120px] md:min-h-[160px] flex items-center justify-center combo-box
-            text-light-accent dark:text-dark-text
           "
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.4 }}
         >
           <span>
-            {/* 🎨 Static text with a different gray/muted tone */}
-            <span className="text-light-textMuted dark:text-dark-textMuted mr-3 md:mr-4">
+            {/* 🎨 Static Text: Using a nicely muted variation of your core theme styles */}
+            <span className="text-light-textMuted/80 dark:text-dark-textMuted/70 mr-3 md:mr-5">
               Hi, I am
             </span>
             
-            {/* ⚡ Dynamic typing text container */}
-            <span>
+            {/* ⚡ Dynamic Typing Container matched perfectly to your custom theme colors */}
+            <span className="text-[#4A2C2A] dark:text-[#E6D3B1]">
               {text}
-              <span className="text-light-accent dark:text-dark-accent animate-pulse inline-block ml-1">
+              <span className="text-[#4A2C2A]/60 dark:text-[#E6D3B1]/80 animate-pulse inline-block ml-1">
                 |
               </span>
             </span>
