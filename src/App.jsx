@@ -121,11 +121,22 @@ import "./index.css";
 // ✅ Loader Component (inline for simplicity)
 function Loader() {
   return (
-    <div className="flex items-center justify-center h-screen bg-white dark:bg-black">
-      <span className="loader"></span>
+    <div className="fixed inset-0 flex items-center justify-center bg-white dark:bg-black">
+      <div className="text-center">
+        <h1 className="loader-text text-5xl md:text-7xl font-extrabold tracking-[0.25em] uppercase">
+          JK08<span className="text-red-500">edits</span>
+        </h1>
+
+        <div className="mt-6 flex justify-center">
+          <div className="h-1 w-48 overflow-hidden rounded-full bg-gray-200 dark:bg-gray-800">
+            <div className="loader-bar h-full bg-red-500"></div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
+
 
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");

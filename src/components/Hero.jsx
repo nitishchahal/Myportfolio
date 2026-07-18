@@ -1,129 +1,114 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const Hero = () => {
-  const typingTextRef = useRef(null);
+  // 🎭 Typewriter Strings (Only the parts that actually type)
+  const texts = ["Nitish Choudhary", "a Software Engineer"];
+  const [text, setText] = useState("");
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
 
+  // 📝 Dynamic Typewriter Effect
   useEffect(() => {
-  let timeout;
+    const current = texts[currentTextIndex];
+    const speed = isDeleting ? 50 : 100;
 
-  // ✅ Function to get current theme color
-  const getLineColor = () => {
-    const isDark = document.documentElement.classList.contains("dark");
-    return isDark ? "#ffffff" : "#000000";
-  };
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        setText(current.substring(0, text.length + 1));
 
-  // ✅ Init particles
-  const initParticles = () => {
-    if (!window.particlesJS) return;
+        if (text === current) {
+          setTimeout(() => setIsDeleting(true), 1200);
+        }
+      } else {
+        setText(current.substring(0, text.length - 1));
 
-    // 🧹 Remove old canvas (IMPORTANT)
-    const container = document.getElementById("particles-js");
-          const isDark = document.documentElement.classList.contains("dark");
+        if (text === "") {
+          setIsDeleting(false);
+          setCurrentTextIndex((prev) => (prev + 1) % texts.length);
+        }
+      }
+    }, speed);
 
-    if (container) {
-      container.innerHTML = "";
-    }
+    return () => clearTimeout(timer);
+  }, [text, isDeleting, currentTextIndex]);
 
-    window.particlesJS("particles-js", {
+  // 🌌 Particles & Theme Management Effect
+  useEffect(() => {
+    const initParticles = () => {
+      if (!window.particlesJS) return;
 
-particles: {
-  number: { value: 70, density: { enable: true, value_area: 900 } },
+      const container = document.getElementById("particles-js");
+      const isDark = document.documentElement.classList.contains("dark");
 
-  // 🎨 Particle color
-  color: {
-    value: isDark ? "#E6D3B1" : "#4A2C2A",
-  },
+      if (container) {
+        container.innerHTML = "";
+      }
 
-  shape: { type: "circle" },
-
-  // ✨ Opacity balance
-  opacity: {
-    value: isDark ? 0.8 : 0.5,
-  },
-
-  size: {
-    value: isDark ? 4 : 3,
-    random: true,
-  },
-
-  // 🔥 GLOW IN BOTH MODES
-  shadow: {
-    enable: true,
-    color: isDark ? "#ffffff" : "#000000",
-    blur: isDark ? 15 : 6, // 👈 strong vs soft glow
-  },
-
-  line_linked: {
-    enable: true,
-    distance: 160,
-    color: isDark ? "#ffffff" : "#000000",
-    opacity: isDark ? 0.6 : 0.35,
-    width: 1,
-  },
-
-  move: {
-    enable: true,
-    speed: 1.8,
-    out_mode: "out",
-  },
-},
-      interactivity: {
-        detect_on: "canvas",
-        events: {
-          onhover: { enable: true, mode: "grab" },
-          onclick: { enable: true, mode: "push" },
-          resize: true,
+      window.particlesJS("particles-js", {
+        particles: {
+          number: { value: 70, density: { enable: true, value_area: 900 } },
+          color: {
+            value: isDark ? "#E6D3B1" : "#4A2C2A",
+          },
+          shape: { type: "circle" },
+          opacity: {
+            value: isDark ? 0.8 : 0.5,
+          },
+          size: {
+            value: isDark ? 4 : 3,
+            random: true,
+          },
+          shadow: {
+            enable: true,
+            color: isDark ? "#ffffff" : "#000000",
+            blur: isDark ? 15 : 6,
+          },
+          line_linked: {
+            enable: true,
+            distance: 160,
+            color: isDark ? "#ffffff" : "#000000",
+            opacity: isDark ? 0.6 : 0.35,
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 1.8,
+            out_mode: "out",
+          },
         },
-        modes: {
-          grab: { distance: 140, line_linked: { opacity: 0.6 } },
-          push: { particles_nb: 3 },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: { enable: true, mode: "grab" },
+            onclick: { enable: true, mode: "push" },
+            resize: true,
+          },
+          modes: {
+            grab: { distance: 140, line_linked: { opacity: 0.6 } },
+            push: { particles_nb: 3 },
+          },
         },
-      },
-      retina_detect: true,
+        retina_detect: true,
+      });
+    };
+
+    initParticles();
+
+    const observer = new MutationObserver(() => {
+      initParticles();
     });
-  };
 
-  // ✅ Initial run
-  initParticles();
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
 
-  // ✅ Watch for theme change (Tailwind dark class)
-  const observer = new MutationObserver(() => {
-    initParticles(); // 🔥 re-init on theme switch
-  });
-
-  observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ["class"],
-  });
-
-  // ✅ Typewriter (unchanged but safe)
-  const text = "Nitish Choudhary";
-  let index = 0;
-
-  function typeWriter() {
-    if (!typingTextRef.current) return;
-
-    if (index < text.length) {
-      typingTextRef.current.textContent += text[index];
-      index++;
-      timeout = setTimeout(typeWriter, 90);
-    }
-  }
-
-  if (typingTextRef.current) {
-    typingTextRef.current.textContent = "";
-  }
-
-  timeout = setTimeout(typeWriter, 500);
-
-  // ✅ Cleanup
-  return () => {
-    if (timeout) clearTimeout(timeout);
-    observer.disconnect();
-  };
-}, []);
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <section
@@ -133,24 +118,34 @@ particles: {
         bg-light-bg dark:bg-dark-bg
       "
     >
-      {/* Particles */}
+      {/* Particles Layout */}
       <div id="particles-js" className="absolute inset-0" />
 
-      <div className="max-w-7xl mx-auto px-6 text-center relative z-10 py-20">
-        {/* Heading */}
+      <div className="max-w-7xl mx-auto px-6 text-center relative z-10 py-20 w-full">
+        {/* Dynamic Headings */}
         <motion.h1
           className="
             text-5xl md:text-7xl font-bold font-poppins mb-6
+            tracking-tight min-h-[120px] md:min-h-[160px] flex items-center justify-center combo-box
             text-light-accent dark:text-dark-text
-            tracking-tight
           "
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.4 }}
         >
-          <span ref={typingTextRef}></span>
-          <span className="text-light-accent/70 dark:text-dark-accent/80 cursor-blink">
-            |
+          <span>
+            {/* 🎨 Static text with a different gray/muted tone */}
+            <span className="text-light-textMuted dark:text-dark-textMuted mr-3 md:mr-4">
+              Hi, I am
+            </span>
+            
+            {/* ⚡ Dynamic typing text container */}
+            <span>
+              {text}
+              <span className="text-light-accent dark:text-dark-accent animate-pulse inline-block ml-1">
+                |
+              </span>
+            </span>
           </span>
         </motion.h1>
 
@@ -171,7 +166,7 @@ particles: {
         {/* CTA BUTTONS */}
         <motion.div
           className="
-            flex flex-col sm:flex-row justify-center
+            flex flex-col sm:flex-row justify-center items-center
             sm:space-x-5 space-y-4 sm:space-y-0
           "
           initial="hidden"
@@ -185,6 +180,7 @@ particles: {
         >
           {/* Primary CTA */}
           <motion.div
+            className="w-full sm:w-auto"
             variants={{
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0 },
@@ -198,7 +194,7 @@ particles: {
                 dark:bg-dark-accent dark:text-charcoal
                 hover:opacity-90
                 transition-all transform hover:scale-[1.04]
-                block text-center
+                block text-center min-w-[180px]
               "
             >
               View My Work
@@ -207,6 +203,7 @@ particles: {
 
           {/* Secondary CTA */}
           <motion.div
+            className="w-full sm:w-auto"
             variants={{
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0 },
@@ -221,7 +218,7 @@ particles: {
                 hover:bg-light-accent hover:text-snow
                 dark:hover:bg-dark-accent dark:hover:text-charcoal
                 transition-all transform hover:scale-[1.04]
-                block text-center
+                block text-center min-w-[180px]
               "
             >
               Contact Me
