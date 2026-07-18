@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-
+import { CTAButton } from "./CTAButton";
 const Hero = () => {
   // 🎭 Typewriter Strings (Only the parts that actually type)
   const texts = ["Nitish Choudhary", "a Software Engineer"];
@@ -177,52 +177,13 @@ const Hero = () => {
             },
           }}
         >
-          {/* Primary CTA */}
-          <motion.div
-            className="w-full sm:w-auto"
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 },
-            }}
-          >
-            <Link
-              to="/portfolio"
-              className="
-                px-8 py-3 rounded-lg font-medium
-                bg-light-accent text-snow
-                dark:bg-dark-accent dark:text-charcoal
-                hover:opacity-90
-                transition-all transform hover:scale-[1.04]
-                block text-center min-w-[180px]
-              "
-            >
-              View My Work
-            </Link>
-          </motion.div>
+          <CTAButton to="/projects" variant="primary">
+            View My Work
+          </CTAButton>
 
-          {/* Secondary CTA */}
-          <motion.div
-            className="w-full sm:w-auto"
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 },
-            }}
-          >
-            <Link
-              to="/contact"
-              className="
-                px-8 py-3 rounded-lg font-medium
-                border border-light-accent text-light-accent
-                dark:border-dark-accent dark:text-dark-accent
-                hover:bg-light-accent hover:text-snow
-                dark:hover:bg-dark-accent dark:hover:text-charcoal
-                transition-all transform hover:scale-[1.04]
-                block text-center min-w-[180px]
-              "
-            >
-              Contact Me
-            </Link>
-          </motion.div>
+          <CTAButton to="/contact" variant="secondary">
+            Contact Me
+          </CTAButton>
         </motion.div>
       </div>
 
