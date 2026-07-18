@@ -150,17 +150,17 @@ const Hero = () => {
 
         {/* Subtitle */}
         <motion.p
-          className="
-            text-xl md:text-2xl mb-10
-            text-light-textMuted dark:text-dark-textMuted
-            max-w-2xl mx-auto
-          "
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.4 }}
-        >
-          Creative Web Developer · Visual Storyteller
-        </motion.p>
+  className="
+    text-xl md:text-2xl mb-10
+    text-light-textMuted dark:text-dark-textMuted
+    max-w-2xl mx-auto
+  "
+  initial={{ opacity: 0, y: 24 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 1.4 }}
+>
+  Creative Full Stack Developer · Building Digital Experiences
+</motion.p>
 
         {/* CTA BUTTONS */}
         <motion.div
