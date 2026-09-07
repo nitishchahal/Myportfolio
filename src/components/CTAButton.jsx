@@ -71,7 +71,7 @@ export function CTAButton({ to, children, variant = "primary" }) {
           className={`
             relative overflow-hidden block text-center min-w-[180px] select-none
             px-8 py-3 rounded-lg font-medium
-            transition-[background-color,box-shadow,border-color] duration-300
+            transition-[background-color,box-shadow,border-color] duration-400
             ${
               isPrimary
                 ? `bg-light-accent text-snow dark:bg-dark-accent dark:text-charcoal
