@@ -1,0 +1,30 @@
+name: Daily Portfolio Activity
+
+on:
+  schedule:
+    - cron: "30 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-activity:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Update activity log
+        run: |
+          mkdir -p .github
+          printf '%s\n' "Daily portfolio maintenance: $(date -u '+%Y-%m-%d')" >> .github/activity.log
+
+      - name: Commit daily maintenance
+        run: |
+          git config user.name "Nitish Choudhary"
+          git config user.email "nitishchahal@users.noreply.github.com"
+          git add .github/activity.log
+          git diff --cached --quiet || git commit -m "chore: daily portfolio maintenance"
+          git push
